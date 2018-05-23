@@ -51,7 +51,7 @@ namespace _180101bsk
             fileManager.LoadUsers();
             InitComboBoxesValues();
             listaOdbiorcow.DataSource = receivers;
-            //decryptUsersList.DataSource = decryptUsers;
+            Lista.DataSource = decryptUsers;
             //subBlockLengthComboBox.SelectedIndex = -1;
         }
 
@@ -153,6 +153,51 @@ namespace _180101bsk
                 //filePrK2.Write(cipheredKey, 0, cipheredKey.Length);
                 //filePrK2.Close();
             }
+        }
+
+        //Dekryptowanie 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string nazwaDocelowa = "";
+            SaveFileDialog okienko = new SaveFileDialog();
+            //okienko.Filter = "Pliki textowe (txt)|*.txt"; //nie jest podane ze musza byc txt, na razie zostawie bez rozszerzenia s4 //ktj
+            if (okienko.ShowDialog() == DialogResult.OK)
+            {
+                nazwaDocelowa = okienko.FileName;
+                fileManager.outputFilePath = okienko.FileName;
+            }
+
+
+            if (fileManager.InputFile == null)
+            {
+                WriteOutput("Brak pliku wejściowego.");
+                return;
+            }
+            if (fileManager.outputFilePath == "")
+            {
+                WriteOutput("Nie ustalono pliku wyjściowego.");
+                return;
+            }
+            if (fileManager.InputFile.BaseStream.Position == 0)
+            {
+                WriteOutput("Niepoprawny plik.");
+                return;
+            }
+            crypto.password = textBox8.Text;
+            try
+            {
+                crypto.StartDecryption(decryptUsers.ElementAt(Lista.SelectedIndex));
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                ClearAll();
+            }
+            WriteOutput("Zakończono");
+            textBox8.Text = "";
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -342,6 +387,16 @@ namespace _180101bsk
             var user = new User(name, keys.publicKey);
             users.Add(user);
             fileManager.SaveUser(user, encryptedPrivateKey, keys.pemPublicKey);
+        }
+
+        private void ClearAll()
+        {
+            //inputFileTextBox.Text = "";
+            //outputFileTextBox.Text = "";
+            receivers.Clear();
+            decryptUsers.Clear();
+            progressBar1.Value = 0;
+            progressBar2.Value = 0;
         }
     }
 

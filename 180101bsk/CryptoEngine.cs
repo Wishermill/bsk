@@ -20,7 +20,6 @@ namespace _180101bsk
     public class CryptoEngine
     {
         private Window window;
-        //private RC6Engine engine;
         private BlowfishEngine engine;
         public FileManager fileManager;
         private Pkcs1Encoding RSAEncryptEngine = new Pkcs1Encoding(new RsaEngine());
