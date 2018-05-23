@@ -52,7 +52,6 @@ namespace _180101bsk
             InitComboBoxesValues();
             listaOdbiorcow.DataSource = receivers;
             Lista.DataSource = decryptUsers;
-            //subBlockLengthComboBox.SelectedIndex = -1;
         }
 
         public void WriteOutput(string text)
@@ -68,8 +67,6 @@ namespace _180101bsk
         private void InitComboBoxesValues()
         {
             keyLengthComboBox.DataSource = config.KeyLength;
-
-            //modeComboBox.DataSource = config.Mode;
             subBlockLengthComboBox.DataSource = config.SubBlockLength;
             crypto.subBlockLength = 1;
         }
@@ -160,7 +157,6 @@ namespace _180101bsk
         {
             string nazwaDocelowa = "";
             SaveFileDialog okienko = new SaveFileDialog();
-            //okienko.Filter = "Pliki textowe (txt)|*.txt"; //nie jest podane ze musza byc txt, na razie zostawie bez rozszerzenia s4 //ktj
             if (okienko.ShowDialog() == DialogResult.OK)
             {
                 nazwaDocelowa = okienko.FileName;
@@ -198,11 +194,6 @@ namespace _180101bsk
             }
             WriteOutput("Zakończono");
             textBox8.Text = "";
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void progressBar2_Click(object sender, EventArgs e)
@@ -325,6 +316,7 @@ namespace _180101bsk
         {
             return true;
         }
+
         //wybierz plik do szyfrowania
         private void button1_Click(object sender, EventArgs e)
         {
@@ -344,11 +336,7 @@ namespace _180101bsk
             fileManager.TryParseFileHeader();
             
         }
-        //not implemented, sprawdzenie czy wszystko wypelnione jak trzeba - do deszyfrowania
-        private bool validDecryption()
-        {
-            return true;
-        }
+
         //przyciski do trybu
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -391,8 +379,6 @@ namespace _180101bsk
 
         private void ClearAll()
         {
-            //inputFileTextBox.Text = "";
-            //outputFileTextBox.Text = "";
             receivers.Clear();
             decryptUsers.Clear();
             progressBar1.Value = 0;

@@ -209,23 +209,6 @@ namespace _180101bsk
                 }
             return "";
         }
-        public void AddGuests()
-        {
-            Stream fileStream;
-            OpenFileDialog fileDialog = new OpenFileDialog();
-            fileDialog.Filter = "Public keys (*.pub)|*.pub";
-            if (fileDialog.ShowDialog() == DialogResult.OK)
-                if ((fileStream = fileDialog.OpenFile()) != null)
-                {
-                    foreach (string path in fileDialog.FileNames)
-                    {
-                        string name = Path.GetFileNameWithoutExtension(path);
-                        byte[] publicKey = Encoding.Default.GetBytes(new StreamReader(File.OpenRead(path)).ReadToEnd());
-                        window.receivers.Add(new User(name, publicKey));
-                    }
-
-                }
-        }
         public string SetOutputFile()
         {
             SaveFileDialog fileDialog = new SaveFileDialog();
