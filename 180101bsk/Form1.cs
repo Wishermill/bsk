@@ -19,8 +19,8 @@ namespace _180101bsk
 {
     public partial class Form1 : Form
     {
-        private string PbKpath = "C:\\Users\\Itness\\Documents\\Visual Studio 2015\\Projects\\180101bsk\\publick";
-        private string PrKpath = "C:\\Users\\Itness\\Documents\\Visual Studio 2015\\Projects\\180101bsk\\privatek";
+        private string PbKpath = "..\\..\\..\\..\\publick";
+        private string PrKpath = "..\\..\\..\\..\\privatek";
         public Form1()
         {
             InitializeComponent();
@@ -67,7 +67,7 @@ namespace _180101bsk
 
         private void button6_Click(object sender, EventArgs e)
         {
-            if (validUserCreation())
+            //if (validUserCreation())
             {
                 //textBox11, 10, 9
                 RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048);
