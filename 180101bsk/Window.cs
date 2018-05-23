@@ -71,6 +71,7 @@ namespace _180101bsk
 
             //modeComboBox.DataSource = config.Mode;
             subBlockLengthComboBox.DataSource = config.SubBlockLength;
+            crypto.subBlockLength = 1;
         }
 
         private void keyLengthComboBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -78,9 +79,12 @@ namespace _180101bsk
             crypto.keyLength = int.Parse(keyLengthComboBox.SelectedValue.ToString()) / 8;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void subBlockLengthComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //idk
+            if (subBlockLengthComboBox.Enabled)
+                crypto.subBlockLength = int.Parse(subBlockLengthComboBox.SelectedValue.ToString()) / 8;
+            else
+                crypto.subBlockLength = 1;
         }
 
         private void Zaszyfruj_Click(object sender, EventArgs e) //linijki55-58 xd

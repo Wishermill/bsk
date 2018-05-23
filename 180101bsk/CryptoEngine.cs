@@ -26,7 +26,7 @@ namespace _180101bsk
         private Pkcs1Encoding RSAEncryptEngine = new Pkcs1Encoding(new RsaEngine());
         public int keyLength;
         public int blockLength = 16;
-        public int subBlockLength;
+        public int subBlockLength = 1;
 
         public string cipherMode;
         public byte[] iv;
@@ -43,8 +43,7 @@ namespace _180101bsk
             this.fileManager = fileManager;
             engine = new BlowfishEngine();
             iv = null;
-            subBlockLength = 0;
-
+            subBlockLength = 1;
         }
 
         public void StartEncryption()
@@ -173,22 +172,19 @@ namespace _180101bsk
         }
         public void CFBProcess(bool mode)
         {
-            var cipher = new PaddedBufferedBlockCipher(new CfbBlockCipher(engine, subBlockLength));
+            var cipher = new PaddedBufferedBlockCipher(new CfbBlockCipher(engine, subBlockLength*8));
             cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
         public void OFBProcess(bool mode)
         {
-            var cipher = new PaddedBufferedBlockCipher(new OfbBlockCipher(engine, subBlockLength));
+            var cipher = new PaddedBufferedBlockCipher(new OfbBlockCipher(engine, subBlockLength*8));
             cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
 
         public void ECBProcess(bool mode)
         {
-            iv = null;
-            subBlockLength = 0;
-            //var cipher = new PaddedBufferedBlockCipher(engine, new Pkcs7Padding());
             var cipher = new PaddedBufferedBlockCipher(engine);
             cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);

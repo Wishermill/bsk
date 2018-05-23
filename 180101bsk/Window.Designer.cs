@@ -241,6 +241,7 @@
             this.subBlockLengthComboBox.Name = "subBlockLengthComboBox";
             this.subBlockLengthComboBox.Size = new System.Drawing.Size(90, 21);
             this.subBlockLengthComboBox.TabIndex = 5;
+            this.subBlockLengthComboBox.SelectedIndexChanged += new System.EventHandler(this.subBlockLengthComboBox_SelectedIndexChanged);
             // 
             // label5
             // 
