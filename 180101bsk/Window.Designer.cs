@@ -1,6 +1,6 @@
 ﻿namespace _180101bsk
 {
-    partial class Form1
+    partial class Window
     {
         /// <summary>
         /// Required designer variable.
@@ -31,6 +31,7 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -68,6 +69,8 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
+            this.outputLabel = new System.Windows.Forms.Label();
+            this.outputTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -102,6 +105,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.outputTextBox);
+            this.groupBox2.Controls.Add(this.outputLabel);
+            this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.textBox1);
             this.groupBox2.Controls.Add(this.label1);
@@ -116,10 +122,20 @@
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 362);
+            this.groupBox2.Size = new System.Drawing.Size(400, 426);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ustawienia";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(8, 179);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(94, 52);
+            this.button2.TabIndex = 14;
+            this.button2.Text = "Zarządzaj odbiorcami";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -167,9 +183,9 @@
             // listaOdbiorcow
             // 
             this.listaOdbiorcow.FormattingEnabled = true;
-            this.listaOdbiorcow.Location = new System.Drawing.Point(60, 162);
+            this.listaOdbiorcow.Location = new System.Drawing.Point(108, 162);
             this.listaOdbiorcow.Name = "listaOdbiorcow";
-            this.listaOdbiorcow.Size = new System.Drawing.Size(326, 69);
+            this.listaOdbiorcow.Size = new System.Drawing.Size(278, 69);
             this.listaOdbiorcow.TabIndex = 8;
             // 
             // label6
@@ -483,13 +499,33 @@
             this.label14.TabIndex = 1;
             this.label14.Text = "Osoba";
             // 
-            // Form1
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Location = new System.Drawing.Point(7, 326);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(47, 13);
+            this.outputLabel.TabIndex = 15;
+            this.outputLabel.Text = "Wyjscie:";
+            // 
+            // outputTextBox
+            // 
+            this.outputTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.outputTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.outputTextBox.Location = new System.Drawing.Point(10, 341);
+            this.outputTextBox.Multiline = true;
+            this.outputTextBox.Name = "outputTextBox";
+            this.outputTextBox.ReadOnly = true;
+            this.outputTextBox.Size = new System.Drawing.Size(376, 73);
+            this.outputTextBox.TabIndex = 16;
+            // 
+            // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 363);
+            this.ClientSize = new System.Drawing.Size(410, 457);
             this.Controls.Add(this.tabControl1);
-            this.Name = "Form1";
+            this.Name = "Window";
             this.Text = "grupa 11 149481 149385";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
@@ -550,6 +586,9 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.TextBox outputTextBox;
+        private System.Windows.Forms.Label outputLabel;
     }
 }
 

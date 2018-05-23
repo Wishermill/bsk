@@ -25,14 +25,32 @@ using System.Windows.Forms;
 
 namespace _180101bsk
 {
-    public partial class Form1 : Form
+    public partial class Window : Form
     {
+        public FileManager fileManager;
+        public CryptoEngine crypto;
+        public Config config;
+        public BindingList<User> users;
+        public BindingList<User> receivers;
+        public BindingList<DecryptUser> decryptUsers;
+
         private string PbKpath = "..\\..\\..\\publick";
         private string PrKpath = "..\\..\\..\\privatek";
         private string cipherMode = "ECB";
-        public Form1()
+
+        public Window()
         {
             InitializeComponent();
+        }
+
+        public void WriteOutput(string text)
+        {
+            outputTextBox.AppendText(text + "\n");
+        }
+
+        public void UpdateProgress(int progress)
+        {
+            progressBar1.Value = progress;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -114,6 +132,8 @@ namespace _180101bsk
         {
             //mozna usunac, ale to trzeba w 2-3 miejscach - to na koniec zrobie
         }
+
+
         //tworzenie uzytkownika
         private void button6_Click(object sender, EventArgs e)
         {
@@ -266,6 +286,67 @@ namespace _180101bsk
             cipherMode = "OFB";
             comboBox2.Enabled = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            (new UsersManager(this)).Show();
+        }
+
+        public void AddUser(string name, string password)
+        {
+            byte[] hash = crypto.Sha256(password);
+            KeyPair keys = crypto.GetKeyPair();
+            byte[] encryptedPrivateKey = crypto.QuickEncrypt(Encoding.Default.GetBytes(keys.pemPrivateKey), hash);
+            var user = new User(name, keys.publicKey);
+            users.Add(user);
+            fileManager.SaveUser(user, encryptedPrivateKey, keys.pemPublicKey);
+        }
+    }
+
+    public class DecryptUser
+    {
+        public string Name { get; set; }
+        public byte[] EncryptedKey { get; set; }
+        public DecryptUser(string name, byte[] encrtyptedKey)
+        {
+            Name = name;
+            EncryptedKey = encrtyptedKey;
+        }
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class User
+    {
+        public string Name { get; set; }
+        public byte[] PublicKey { get; set; }
+        public User(string name, byte[] publicKey)
+        {
+            Name = name;
+            PublicKey = publicKey;
+        }
+        public override string ToString()
+        {
+            return Name;
+        }
+    }
+
+    public class KeyPair
+    {
+        public byte[] publicKey;
+        public byte[] privateKey;
+        public string pemPublicKey;
+        public string pemPrivateKey;
+    }
+
+    public class Config
+    {
+        public List<int> KeyLength { get; set; }
+        public List<int> BlockLength { get; set; }
+        public List<int> SubBlockLength { get; set; }
+        public List<string> Mode { get; set; }
     }
 }
 
