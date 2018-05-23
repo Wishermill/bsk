@@ -173,6 +173,7 @@
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(104, 20);
             this.textBox4.TabIndex = 6;
+            this.textBox4.Text = "64";
             // 
             // comboBox2
             // 
@@ -544,6 +545,7 @@
             this.button6.TabIndex = 11;
             this.button6.Text = "Generuj klucz";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // textBox9
             // 
