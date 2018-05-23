@@ -7,15 +7,15 @@
 # Standard to msysgit
 /privatek
 /publick
-.vs/180101bsk/v14/.suo
-180101bsk/180101bsk.csproj
-180101bsk/bin/Debug/180101bsk.exe
-180101bsk/bin/Debug/180101bsk.pdb
-180101bsk/obj/Debug/180101bsk.csproj.GenerateResource.Cache
-180101bsk/obj/Debug/180101bsk.csprojResolveAssemblyReference.cache
-180101bsk/obj/Debug/180101bsk.exe
-180101bsk/obj/Debug/180101bsk.pdb
-180101bsk/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+/.vs/180101bsk/v14/.suo
+/180101bsk/180101bsk.csproj
+/180101bsk/bin/Debug/180101bsk.exe
+/180101bsk/bin/Debug/180101bsk.pdb
+/180101bsk/obj/Debug/180101bsk.csproj.GenerateResource.Cache
+/180101bsk/obj/Debug/180101bsk.csprojResolveAssemblyReference.cache
+/180101bsk/obj/Debug/180101bsk.exe
+/180101bsk/obj/Debug/180101bsk.pdb
+/180101bsk/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain
 *.docx diff=astextplain
