@@ -175,7 +175,7 @@ namespace _180101bsk
             Write(Encoding.Default.GetBytes("<?xml version = \"1.0\" encoding = \"UTF-8\" standalone = \"yes\" ?>"));
             var doc = new XmlDocument();
             var headerNode = doc.AppendChild(doc.CreateElement("encryptionHeader"));
-            headerNode.AppendChild(doc.CreateElement("algorithm")).InnerText = "RC6";
+            headerNode.AppendChild(doc.CreateElement("algorithm")).InnerText = "Blowfish";
             headerNode.AppendChild(doc.CreateElement("keyLength")).InnerText = (window.crypto.keyLength * 8).ToString();
             headerNode.AppendChild(doc.CreateElement("encryptionMode")).InnerText = window.crypto.cipherMode;
             if (window.crypto.subBlockLength != 0)

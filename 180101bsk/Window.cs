@@ -73,6 +73,11 @@ namespace _180101bsk
             subBlockLengthComboBox.DataSource = config.SubBlockLength;
         }
 
+        private void keyLengthComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            crypto.keyLength = int.Parse(keyLengthComboBox.SelectedValue.ToString()) / 8;
+        }
+
         private void label1_Click(object sender, EventArgs e)
         {
             //idk
@@ -88,7 +93,10 @@ namespace _180101bsk
                 if (okienko.ShowDialog() == DialogResult.OK)
                 {
                     nazwaDocelowa = okienko.FileName;
+                    fileManager.outputFilePath = okienko.FileName;
                 }
+                crypto.cipherMode = cipherMode;
+                crypto.StartEncryption();
                 //algorithm.Init - true = szyfrowanie, false = deszyfrowanie
                 //textbox1 = wczytany plik
                 //comboBox2.Text = zaznaczony tryb
@@ -103,31 +111,31 @@ namespace _180101bsk
                 klucz.KeySize = dlugoscKlucza;
                 klucz.GenerateKey();
                 */
-                BlowfishEngine algorithm = new BlowfishEngine();
-                int temp = algorithm.GetBlockSize(); //64b
-                KeyParameter parameter = null; //tu nie jestem pewien jak zrobić, chyba wczesniej klucz sesyjny i jazda //ktj
+                //BlowfishEngine algorithm = new BlowfishEngine();
+                //int temp = algorithm.GetBlockSize(); //64b
+                //KeyParameter parameter = null; //tu nie jestem pewien jak zrobić, chyba wczesniej klucz sesyjny i jazda //ktj
                 //probably KeyParameter parameter = new KeyParameter(klucz.Key);
                 //algorithm.Init(true, parameter);
 
-                BufferedBlockCipher mode = null;
-                if (cipherMode == "ECB")
-                {
-                    mode = new PaddedBufferedBlockCipher(algorithm);
-                }
-                else if (cipherMode == "CBC")
-                {
-                    mode = new PaddedBufferedBlockCipher(new CbcBlockCipher(algorithm));
-                }
-                else if (cipherMode == "CFB")
-                {
-                    mode = new PaddedBufferedBlockCipher(new CfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text))); //chyba potem zmienie by do zmiennej to pakowac //ktj
-                }
-                else if (cipherMode == "OFB")
-                {
-                    mode = new PaddedBufferedBlockCipher(new OfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text)));
-                }
-                mode.Init(true, parameter);
-                FileStream fileToCipher = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read); //co wczytalismy to textbox1
+                //BufferedBlockCipher mode = null;
+                //if (cipherMode == "ECB")
+                //{
+                //    mode = new PaddedBufferedBlockCipher(algorithm);
+                //}
+                //else if (cipherMode == "CBC")
+                //{
+                //    mode = new PaddedBufferedBlockCipher(new CbcBlockCipher(algorithm));
+                //}
+                //else if (cipherMode == "CFB")
+                //{
+                //    mode = new PaddedBufferedBlockCipher(new CfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text))); //chyba potem zmienie by do zmiennej to pakowac //ktj
+                //}
+                //else if (cipherMode == "OFB")
+                //{
+                //    mode = new PaddedBufferedBlockCipher(new OfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text)));
+                //}
+                //mode.Init(true, parameter);
+                //FileStream fileToCipher = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read); //co wczytalismy to textbox1
 
                 //mode.Init(true, parameter);
                 //byte[] privateKeyHashed2 = new byte[mode.GetOutputSize(privateCopy.Length) + 8];
@@ -271,11 +279,21 @@ namespace _180101bsk
         //wybierz plik do szyfrowania
         private void button1_Click(object sender, EventArgs e)
         {
-            OpenFileDialog okienko = new OpenFileDialog(); //plik wejsciowy ma byc kazdy s4 //ktj
-            if (okienko.ShowDialog() == DialogResult.OK)
+           if (fileManager.InputFile != null)
+                fileManager.InputFile.Close();
+            decryptUsers.Clear();
+            try
             {
-                textBox1.Text = okienko.FileName;
+                textBox1.Text = fileManager.SetInputFile();
             }
+            catch (Exception ex)
+            {
+                WriteOutput("Nie można otworzyć pliku.");
+                return;
+            }
+            
+            fileManager.TryParseFileHeader();
+            
         }
         //not implemented, sprawdzenie czy wszystko wypelnione jak trzeba - do deszyfrowania
         private bool validDecryption()

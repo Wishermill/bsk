@@ -31,6 +31,9 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.keyLengthComboBox = new System.Windows.Forms.ComboBox();
+            this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.outputLabel = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -68,9 +71,6 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.outputLabel = new System.Windows.Forms.Label();
-            this.outputTextBox = new System.Windows.Forms.TextBox();
-            this.keyLengthComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -126,6 +126,35 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ustawienia";
+            // 
+            // keyLengthComboBox
+            // 
+            this.keyLengthComboBox.FormattingEnabled = true;
+            this.keyLengthComboBox.Location = new System.Drawing.Point(282, 64);
+            this.keyLengthComboBox.Name = "keyLengthComboBox";
+            this.keyLengthComboBox.Size = new System.Drawing.Size(86, 21);
+            this.keyLengthComboBox.TabIndex = 17;
+            this.keyLengthComboBox.SelectedIndexChanged += new System.EventHandler(this.keyLengthComboBox_SelectedIndexChanged);
+            // 
+            // outputTextBox
+            // 
+            this.outputTextBox.BackColor = System.Drawing.SystemColors.Window;
+            this.outputTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
+            this.outputTextBox.Location = new System.Drawing.Point(10, 341);
+            this.outputTextBox.Multiline = true;
+            this.outputTextBox.Name = "outputTextBox";
+            this.outputTextBox.ReadOnly = true;
+            this.outputTextBox.Size = new System.Drawing.Size(376, 73);
+            this.outputTextBox.TabIndex = 16;
+            // 
+            // outputLabel
+            // 
+            this.outputLabel.AutoSize = true;
+            this.outputLabel.Location = new System.Drawing.Point(7, 326);
+            this.outputLabel.Name = "outputLabel";
+            this.outputLabel.Size = new System.Drawing.Size(47, 13);
+            this.outputLabel.TabIndex = 15;
+            this.outputLabel.Text = "Wyjscie:";
             // 
             // button2
             // 
@@ -490,34 +519,6 @@
             this.label14.Size = new System.Drawing.Size(75, 13);
             this.label14.TabIndex = 1;
             this.label14.Text = "Osoba";
-            // 
-            // outputLabel
-            // 
-            this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(7, 326);
-            this.outputLabel.Name = "outputLabel";
-            this.outputLabel.Size = new System.Drawing.Size(47, 13);
-            this.outputLabel.TabIndex = 15;
-            this.outputLabel.Text = "Wyjscie:";
-            // 
-            // outputTextBox
-            // 
-            this.outputTextBox.BackColor = System.Drawing.SystemColors.Window;
-            this.outputTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.outputTextBox.Location = new System.Drawing.Point(10, 341);
-            this.outputTextBox.Multiline = true;
-            this.outputTextBox.Name = "outputTextBox";
-            this.outputTextBox.ReadOnly = true;
-            this.outputTextBox.Size = new System.Drawing.Size(376, 73);
-            this.outputTextBox.TabIndex = 16;
-            // 
-            // keyLengthComboBox
-            // 
-            this.keyLengthComboBox.FormattingEnabled = true;
-            this.keyLengthComboBox.Location = new System.Drawing.Point(282, 64);
-            this.keyLengthComboBox.Name = "keyLengthComboBox";
-            this.keyLengthComboBox.Size = new System.Drawing.Size(86, 21);
-            this.keyLengthComboBox.TabIndex = 17;
             // 
             // Window
             // 

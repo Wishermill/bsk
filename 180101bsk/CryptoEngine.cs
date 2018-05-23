@@ -8,14 +8,10 @@ using Org.BouncyCastle.Crypto.Parameters;
 using System.Security.Cryptography;
 using Org.BouncyCastle.Crypto.Paddings;
 using Org.BouncyCastle.Crypto;
-using Org.BouncyCastle.Crypto.Prng;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.Crypto.Generators;
 using System.IO;
 using Org.BouncyCastle.OpenSsl;
-using Org.BouncyCastle.Asn1.Pkcs;
-using Org.BouncyCastle.Pkcs;
-using Org.BouncyCastle.X509;
 using Org.BouncyCastle.Crypto.Encodings;
 using Org.BouncyCastle.Crypto.Modes;
 
@@ -24,7 +20,8 @@ namespace _180101bsk
     public class CryptoEngine
     {
         private Window window;
-        private RC6Engine engine;
+        //private RC6Engine engine;
+        private BlowfishEngine engine;
         public FileManager fileManager;
         private Pkcs1Encoding RSAEncryptEngine = new Pkcs1Encoding(new RsaEngine());
         public int keyLength;
@@ -39,11 +36,12 @@ namespace _180101bsk
         public static bool DECRYPT = false;
         public byte[] sessionKey;
         public string password;
+
         public CryptoEngine(Window window, FileManager fileManager)
         {
             this.window = window;
             this.fileManager = fileManager;
-            engine = new RC6Engine();
+            engine = new BlowfishEngine();
             iv = null;
             subBlockLength = 0;
 
@@ -53,6 +51,7 @@ namespace _180101bsk
         {
             fileManager.OpenOutputFile();
             GenerateKeys();
+
             if (cipherMode == "ECB")
             {
                 subBlockLength = 0;
@@ -168,28 +167,29 @@ namespace _180101bsk
         }
         public void CBCProcess(bool mode)
         {
-            subBlockLength = 0;
-            var cipher = new PaddedBufferedBlockCipher(new CbcBlockCipher(engine), new Pkcs7Padding());
-            cipher.Init(mode, new ParametersWithIV(new KeyParameter(sessionKey), iv));
+            var cipher = new PaddedBufferedBlockCipher(new CbcBlockCipher(engine));
+            cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
         public void CFBProcess(bool mode)
         {
-            var cipher = new PaddedBufferedBlockCipher(new CfbBlockCipher(engine, subBlockLength * 8), new Pkcs7Padding());
-            cipher.Init(mode, new ParametersWithIV(new KeyParameter(sessionKey), iv));
+            var cipher = new PaddedBufferedBlockCipher(new CfbBlockCipher(engine, subBlockLength));
+            cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
         public void OFBProcess(bool mode)
         {
-            var cipher = new PaddedBufferedBlockCipher(new OfbBlockCipher(engine, subBlockLength * 8), new Pkcs7Padding());
-            cipher.Init(mode, new ParametersWithIV(new KeyParameter(sessionKey), iv));
+            var cipher = new PaddedBufferedBlockCipher(new OfbBlockCipher(engine, subBlockLength));
+            cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
+
         public void ECBProcess(bool mode)
         {
             iv = null;
             subBlockLength = 0;
-            var cipher = new PaddedBufferedBlockCipher(engine, new Pkcs7Padding());
+            //var cipher = new PaddedBufferedBlockCipher(engine, new Pkcs7Padding());
+            var cipher = new PaddedBufferedBlockCipher(engine);
             cipher.Init(mode, new KeyParameter(sessionKey));
             Process(cipher);
         }
@@ -220,12 +220,14 @@ namespace _180101bsk
             iv = new byte[blockLength];
             rand.GetBytes(iv);
         }
+
         public byte[] Sha256(string password)
         {
             byte[] bytes = Encoding.Default.GetBytes(password);
             SHA256Managed hashstring = new SHA256Managed();
             return hashstring.ComputeHash(bytes);
         }
+
         public KeyPair GetKeyPair()
         {
             var keyGenerationParameters = new KeyGenerationParameters(new SecureRandom(), 4096);
