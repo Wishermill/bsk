@@ -398,6 +398,11 @@ namespace _180101bsk
             progressBar1.Value = 0;
             progressBar2.Value = 0;
         }
+
+        private void outputLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class DecryptUser

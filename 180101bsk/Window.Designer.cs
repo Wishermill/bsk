@@ -89,7 +89,7 @@
             this.tabControl1.Location = new System.Drawing.Point(-3, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(417, 482);
+            this.tabControl1.Size = new System.Drawing.Size(417, 363);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -98,7 +98,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(409, 456);
+            this.tabPage1.Size = new System.Drawing.Size(409, 337);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Szyfrowanie";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -106,8 +106,6 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.keyLengthComboBox);
-            this.groupBox2.Controls.Add(this.outputTextBox);
-            this.groupBox2.Controls.Add(this.outputLabel);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.textBox1);
@@ -140,21 +138,22 @@
             // 
             this.outputTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.outputTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.outputTextBox.Location = new System.Drawing.Point(10, 341);
+            this.outputTextBox.Location = new System.Drawing.Point(7, 382);
             this.outputTextBox.Multiline = true;
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
-            this.outputTextBox.Size = new System.Drawing.Size(376, 73);
+            this.outputTextBox.Size = new System.Drawing.Size(391, 58);
             this.outputTextBox.TabIndex = 16;
             // 
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(7, 326);
+            this.outputLabel.Location = new System.Drawing.Point(4, 366);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(47, 13);
             this.outputLabel.TabIndex = 15;
             this.outputLabel.Text = "Wyjscie:";
+            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // button2
             // 
@@ -194,9 +193,9 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(11, 255);
+            this.progressBar1.Location = new System.Drawing.Point(8, 255);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(375, 23);
+            this.progressBar1.Size = new System.Drawing.Size(378, 23);
             this.progressBar1.TabIndex = 10;
             // 
             // Zaszyfruj
@@ -529,6 +528,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(410, 457);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.outputLabel);
+            this.Controls.Add(this.outputTextBox);
             this.Name = "Window";
             this.Text = "grupa 11 149481 149385";
             this.Load += new System.EventHandler(this.Form1_Load);
@@ -545,6 +546,7 @@
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
