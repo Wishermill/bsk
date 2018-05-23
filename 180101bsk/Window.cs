@@ -41,6 +41,18 @@ namespace _180101bsk
         public Window()
         {
             InitializeComponent();
+            fileManager = new FileManager(this);
+            crypto = new CryptoEngine(this, fileManager);
+            config = new Config();
+            users = new BindingList<User>();
+            receivers = new BindingList<User>();
+            decryptUsers = new BindingList<DecryptUser>();
+            fileManager.LoadConfig();
+            fileManager.LoadUsers();
+            InitComboBoxesValues();
+            listaOdbiorcow.DataSource = receivers;
+            //decryptUsersList.DataSource = decryptUsers;
+            //subBlockLengthComboBox.SelectedIndex = -1;
         }
 
         public void WriteOutput(string text)
@@ -51,6 +63,14 @@ namespace _180101bsk
         public void UpdateProgress(int progress)
         {
             progressBar1.Value = progress;
+        }
+
+        private void InitComboBoxesValues()
+        {
+            keyLengthComboBox.DataSource = config.KeyLength;
+
+            //modeComboBox.DataSource = config.Mode;
+            subBlockLengthComboBox.DataSource = config.SubBlockLength;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -100,11 +120,11 @@ namespace _180101bsk
                 }
                 else if (cipherMode == "CFB")
                 {
-                    mode = new PaddedBufferedBlockCipher(new CfbBlockCipher(algorithm, Int32.Parse(comboBox2.Text))); //chyba potem zmienie by do zmiennej to pakowac //ktj
+                    mode = new PaddedBufferedBlockCipher(new CfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text))); //chyba potem zmienie by do zmiennej to pakowac //ktj
                 }
                 else if (cipherMode == "OFB")
                 {
-                    mode = new PaddedBufferedBlockCipher(new OfbBlockCipher(algorithm, Int32.Parse(comboBox2.Text)));
+                    mode = new PaddedBufferedBlockCipher(new OfbBlockCipher(algorithm, Int32.Parse(subBlockLengthComboBox.Text)));
                 }
                 mode.Init(true, parameter);
                 FileStream fileToCipher = new FileStream(textBox1.Text, FileMode.Open, FileAccess.Read); //co wczytalismy to textbox1
@@ -266,25 +286,25 @@ namespace _180101bsk
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             cipherMode = "ECB";
-            comboBox2.Enabled = false;
+            subBlockLengthComboBox.Enabled = false;
         }
 
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
         {
             cipherMode = "CBC";
-            comboBox2.Enabled = false;
+            subBlockLengthComboBox.Enabled = false;
         }
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
             cipherMode = "CFB";
-            comboBox2.Enabled = true;
+            subBlockLengthComboBox.Enabled = true;
         }
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             cipherMode = "OFB";
-            comboBox2.Enabled = true;
+            subBlockLengthComboBox.Enabled = true;
         }
 
         private void button2_Click(object sender, EventArgs e)

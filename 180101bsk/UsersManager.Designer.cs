@@ -48,6 +48,7 @@
             this.addUserToReceivers.TabIndex = 5;
             this.addUserToReceivers.Text = "⇛";
             this.addUserToReceivers.UseVisualStyleBackColor = true;
+            this.addUserToReceivers.Click += new System.EventHandler(this.addUserToReceivers_Click);
             // 
             // label1
             // 
@@ -75,6 +76,7 @@
             this.removeUserFromReceivers.TabIndex = 11;
             this.removeUserFromReceivers.Text = "⇚ ";
             this.removeUserFromReceivers.UseVisualStyleBackColor = true;
+            this.removeUserFromReceivers.Click += new System.EventHandler(this.removeUserFromReceivers_Click);
             // 
             // receiversList
             // 
@@ -101,6 +103,7 @@
             this.okButton.TabIndex = 14;
             this.okButton.Text = "Zatwierdź";
             this.okButton.UseVisualStyleBackColor = true;
+            this.okButton.Click += new System.EventHandler(this.okButton_Click);
             // 
             // createUser
             // 
@@ -110,6 +113,7 @@
             this.createUser.TabIndex = 15;
             this.createUser.Text = "Stwórz użytkownika";
             this.createUser.UseVisualStyleBackColor = true;
+            this.createUser.Click += new System.EventHandler(this.createUser_Click);
             // 
             // deleteUsers
             // 
@@ -119,6 +123,7 @@
             this.deleteUsers.TabIndex = 16;
             this.deleteUsers.Text = "Usuń zaznaczonych";
             this.deleteUsers.UseVisualStyleBackColor = true;
+            this.deleteUsers.Click += new System.EventHandler(this.deleteUsers_Click);
             // 
             // UsersManager
             // 

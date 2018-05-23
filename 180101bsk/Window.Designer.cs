@@ -39,8 +39,7 @@
             this.Zaszyfruj = new System.Windows.Forms.Button();
             this.listaOdbiorcow = new System.Windows.Forms.ListBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.subBlockLengthComboBox = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -71,6 +70,7 @@
             this.label14 = new System.Windows.Forms.Label();
             this.outputLabel = new System.Windows.Forms.Label();
             this.outputTextBox = new System.Windows.Forms.TextBox();
+            this.keyLengthComboBox = new System.Windows.Forms.ComboBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -105,6 +105,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.keyLengthComboBox);
             this.groupBox2.Controls.Add(this.outputTextBox);
             this.groupBox2.Controls.Add(this.outputLabel);
             this.groupBox2.Controls.Add(this.button2);
@@ -115,8 +116,7 @@
             this.groupBox2.Controls.Add(this.Zaszyfruj);
             this.groupBox2.Controls.Add(this.listaOdbiorcow);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.textBox4);
-            this.groupBox2.Controls.Add(this.comboBox2);
+            this.groupBox2.Controls.Add(this.subBlockLengthComboBox);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.groupBox3);
@@ -197,29 +197,21 @@
             this.label6.TabIndex = 7;
             this.label6.Text = "Odbiorcy";
             // 
-            // textBox4
+            // subBlockLengthComboBox
             // 
-            this.textBox4.Location = new System.Drawing.Point(282, 65);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(104, 20);
-            this.textBox4.TabIndex = 6;
-            this.textBox4.Text = "64";
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.Enabled = false;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
+            this.subBlockLengthComboBox.Enabled = false;
+            this.subBlockLengthComboBox.FormattingEnabled = true;
+            this.subBlockLengthComboBox.Items.AddRange(new object[] {
             "2",
             "4",
             "8",
             "16",
             "32",
             "64"});
-            this.comboBox2.Location = new System.Drawing.Point(155, 64);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(90, 21);
-            this.comboBox2.TabIndex = 5;
+            this.subBlockLengthComboBox.Location = new System.Drawing.Point(155, 64);
+            this.subBlockLengthComboBox.Name = "subBlockLengthComboBox";
+            this.subBlockLengthComboBox.Size = new System.Drawing.Size(90, 21);
+            this.subBlockLengthComboBox.TabIndex = 5;
             // 
             // label5
             // 
@@ -519,6 +511,14 @@
             this.outputTextBox.Size = new System.Drawing.Size(376, 73);
             this.outputTextBox.TabIndex = 16;
             // 
+            // keyLengthComboBox
+            // 
+            this.keyLengthComboBox.FormattingEnabled = true;
+            this.keyLengthComboBox.Location = new System.Drawing.Point(282, 64);
+            this.keyLengthComboBox.Name = "keyLengthComboBox";
+            this.keyLengthComboBox.Size = new System.Drawing.Size(86, 21);
+            this.keyLengthComboBox.TabIndex = 17;
+            // 
             // Window
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -554,8 +554,7 @@
         private System.Windows.Forms.Button Zaszyfruj;
         private System.Windows.Forms.ListBox listaOdbiorcow;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox subBlockLengthComboBox;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.GroupBox groupBox3;
@@ -589,6 +588,7 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox outputTextBox;
         private System.Windows.Forms.Label outputLabel;
+        private System.Windows.Forms.ComboBox keyLengthComboBox;
     }
 }
 
