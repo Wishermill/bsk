@@ -5,6 +5,8 @@
 *.cs     diff=csharp
 
 # Standard to msysgit
+/privatek
+/publick
 *.doc	 diff=astextplain
 *.DOC	 diff=astextplain
 *.docx diff=astextplain
