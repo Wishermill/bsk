@@ -312,7 +312,11 @@ namespace _180101bsk
 
         private void ClearAll()
         {
-            receivers.Clear();
+            foreach (User user in receivers)
+            {
+                users.Add(user);
+                receivers.Remove(user);
+            }
             decryptUsers.Clear();
             progressBar1.Value = 0;
             progressBar2.Value = 0;

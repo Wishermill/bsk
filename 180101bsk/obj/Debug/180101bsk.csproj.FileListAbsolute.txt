@@ -30,3 +30,4 @@ D:\bskhub\bsk\180101bsk\obj\Debug\_180101bsk.UsersManager.resources
 D:\bskhub\bsk\180101bsk\obj\Debug\180101bsk.csproj.GenerateResource.Cache
 D:\bskhub\bsk\180101bsk\bin\Debug\180101bsk.exe
 D:\bskhub\bsk\180101bsk\bin\Debug\180101bsk.pdb
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csprojAssemblyReference.cache
