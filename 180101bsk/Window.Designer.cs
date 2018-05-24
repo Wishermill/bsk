@@ -415,7 +415,6 @@
             this.outputLabel.Size = new System.Drawing.Size(47, 13);
             this.outputLabel.TabIndex = 15;
             this.outputLabel.Text = "Wyjscie:";
-            this.outputLabel.Click += new System.EventHandler(this.outputLabel_Click);
             // 
             // Window
             // 
