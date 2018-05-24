@@ -113,7 +113,7 @@ namespace _180101bsk
             if (okienko.ShowDialog() == DialogResult.OK)
             {
                 nazwaDocelowa = okienko.FileName;
-                fileManager.outputFilePath = okienko.FileName;
+                fileManager.outputFilePath = okienko.FileName + crypto.extensionName;
             }
 
 

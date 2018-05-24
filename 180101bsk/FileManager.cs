@@ -37,6 +37,7 @@ namespace _180101bsk
         public long inputFileLength;
         private Window window;
         public string outputFilePath = "";
+        public string extensionName = "";
         public FileManager(Window window)
         {
             this.window = window;
@@ -147,6 +148,7 @@ namespace _180101bsk
 
             window.crypto.keyLength = Int32.Parse(doc.SelectSingleNode("encryptionHeader/keyLength").InnerText) / 8;
             window.crypto.cipherMode = doc.SelectSingleNode("encryptionHeader/encryptionMode").InnerText;
+            window.crypto.extensionName = doc.SelectSingleNode("encryptionHeader/extension").InnerText;
             if (doc.SelectSingleNode("encryptionHeader/subblockLength") != null)
                 window.crypto.subBlockLength = Int32.Parse(doc.SelectSingleNode("encryptionHeader/subblockLength").InnerText) / 8;
             if (doc.SelectSingleNode("encryptionHeader/initializationVector") != null)
@@ -161,6 +163,7 @@ namespace _180101bsk
             window.WriteOutput("Wczytano nagłówek pliku.");
             window.WriteOutput("Długość klucza: " + window.crypto.keyLength * 8);
             window.WriteOutput("Tryb: " + window.crypto.cipherMode);
+            window.WriteOutput("Rozszerzenie: " + window.crypto.extensionName);
         }
         public byte[] GetUserEncryptedPrivateKey(string name)
         {
@@ -189,6 +192,7 @@ namespace _180101bsk
             var doc = new XmlDocument();
             var headerNode = doc.AppendChild(doc.CreateElement("encryptionHeader"));
             headerNode.AppendChild(doc.CreateElement("algorithm")).InnerText = "Blowfish";
+            headerNode.AppendChild(doc.CreateElement("extension")).InnerText = extensionName;
             headerNode.AppendChild(doc.CreateElement("keyLength")).InnerText = (window.crypto.keyLength * 8).ToString();
             headerNode.AppendChild(doc.CreateElement("encryptionMode")).InnerText = window.crypto.cipherMode;
             if (window.crypto.subBlockLength != 0)
@@ -217,6 +221,8 @@ namespace _180101bsk
                 if ((fileStream = fileDialog.OpenFile()) != null)
                 {
                     inputFileLength = fileStream.Length;
+                    FileStream streamTemp = fileStream as FileStream;
+                    extensionName = Path.GetExtension(streamTemp.Name);
                     InputFile = new BinaryReader(fileStream);
                     return fileDialog.FileName;
                 }

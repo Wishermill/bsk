@@ -30,3 +30,4 @@ C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.CoreCompileInp
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.CopyComplete
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.exe
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.pdb
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csprojAssemblyReference.cache

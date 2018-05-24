@@ -26,6 +26,7 @@ namespace _180101bsk
         public int keyLength;
         public int blockLength = 16;//na 8 z 16 ktj
         public int subBlockLength = 1;
+        public string extensionName = "";
 
         public string cipherMode;
         public byte[] iv;
