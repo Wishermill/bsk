@@ -110,11 +110,6 @@ namespace _180101bsk
                 WriteOutput("Nie ustalono pliku wyjściowego.");
                 return;
             }
-            if (fileManager.InputFile.BaseStream.Position == 0)
-            {
-                WriteOutput("Niepoprawny plik.");
-                return;
-            }
             try
             {
                 crypto.StartEncryption();
