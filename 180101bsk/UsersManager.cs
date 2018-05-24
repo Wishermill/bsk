@@ -79,10 +79,5 @@ namespace _180101bsk
         {
             Close();
         }
-
-        private void addGuestButton_Click(object sender, EventArgs e)
-        {
-            window.fileManager.AddGuests();
-        }
     }
 }

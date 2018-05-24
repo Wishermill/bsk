@@ -7,16 +7,15 @@ C:\Users\Itness\Documents\Visual Studio 2015\Projects\180101bsk\180101bsk\obj\De
 C:\Users\Itness\Documents\Visual Studio 2015\Projects\180101bsk\180101bsk\obj\Debug\180101bsk.csproj.GenerateResource.Cache
 C:\Users\Itness\Documents\Visual Studio 2015\Projects\180101bsk\180101bsk\obj\Debug\180101bsk.exe
 C:\Users\Itness\Documents\Visual Studio 2015\Projects\180101bsk\180101bsk\obj\Debug\180101bsk.pdb
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.UserCreator.resources
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.Window.resources
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.Properties.Resources.resources
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.UsersManager.resources
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.GenerateResource.cache
+C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.CoreCompileInputs.cache
 C:\Users\bejgr\Documents\bsk\180101bsk\bin\Debug\180101bsk.exe.config
 C:\Users\bejgr\Documents\bsk\180101bsk\bin\Debug\180101bsk.exe
 C:\Users\bejgr\Documents\bsk\180101bsk\bin\Debug\180101bsk.pdb
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csprojAssemblyReference.cache
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.Properties.Resources.resources
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.GenerateResource.cache
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.CoreCompileInputs.cache
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.csproj.CopyComplete
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.exe
 C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\180101bsk.pdb
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.UserCreator.resources
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.Window.resources
-C:\Users\bejgr\Documents\bsk\180101bsk\obj\Debug\_180101bsk.UsersManager.resources

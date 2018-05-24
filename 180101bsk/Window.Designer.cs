@@ -532,7 +532,6 @@
             this.Controls.Add(this.outputTextBox);
             this.Name = "Window";
             this.Text = "grupa 11 149481 149385";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
