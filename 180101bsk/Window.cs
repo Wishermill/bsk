@@ -149,11 +149,6 @@ namespace _180101bsk
             textBox8.Text = "";
         }
 
-        private void progressBar2_Click(object sender, EventArgs e)
-        {
-            //mozna usunac, ale to trzeba w 2-3 miejscach - to na koniec zrobie
-        }
-
         //wybierz plik do szyfrowania i deszyfrowania 
         private void button1_Click(object sender, EventArgs e)
         {

@@ -316,7 +316,6 @@
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(375, 23);
             this.progressBar2.TabIndex = 12;
-            this.progressBar2.Click += new System.EventHandler(this.progressBar2_Click);
             // 
             // textBox8
             // 
