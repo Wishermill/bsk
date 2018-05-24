@@ -96,8 +96,10 @@ namespace _180101bsk
                     nazwaDocelowa = okienko.FileName;
                     fileManager.outputFilePath = okienko.FileName;
                 }
+
                 crypto.cipherMode = cipherMode;
                 crypto.StartEncryption();
+                textBox1.Text = "";
                 //algorithm.Init - true = szyfrowanie, false = deszyfrowanie
                 //textbox1 = wczytany plik
                 //comboBox2.Text = zaznaczony tryb
@@ -201,79 +203,7 @@ namespace _180101bsk
             //mozna usunac, ale to trzeba w 2-3 miejscach - to na koniec zrobie
         }
 
-
-        //tworzenie uzytkownika
-        private void button6_Click(object sender, EventArgs e)
-        {
-            //if (validUserCreation()) //dopoki nie oddajemy, latwiej testowac //ktj
-            {
-                //textBox11 = osoba, 10=9=haslo
-                RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048);
-
-
-                RSAParameters publicKey = RSA.ExportParameters(false);
-
-                RSAParameters privateKey = RSA.ExportParameters(true);
-                byte[] privateCopy = new byte[privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length + privateKey.Exponent.Length + privateKey.InverseQ.Length + privateKey.Modulus.Length + privateKey.P.Length + privateKey.Q.Length];
-                System.Buffer.BlockCopy(privateKey.D, 0, privateCopy, 0, privateKey.D.Length);
-                System.Buffer.BlockCopy(privateKey.DP, 0, privateCopy, privateKey.D.Length, privateKey.DP.Length);
-                System.Buffer.BlockCopy(privateKey.DQ, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length, privateKey.DQ.Length);
-                System.Buffer.BlockCopy(privateKey.Exponent, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length, privateKey.Exponent.Length);
-                System.Buffer.BlockCopy(privateKey.InverseQ, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length + privateKey.Exponent.Length, privateKey.InverseQ.Length);
-                System.Buffer.BlockCopy(privateKey.Modulus, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length + privateKey.Exponent.Length + privateKey.InverseQ.Length, privateKey.Modulus.Length);
-                System.Buffer.BlockCopy(privateKey.P, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length + privateKey.Exponent.Length + privateKey.InverseQ.Length + privateKey.Modulus.Length, privateKey.P.Length);
-                System.Buffer.BlockCopy(privateKey.Q, 0, privateCopy, privateKey.D.Length + privateKey.DP.Length + privateKey.DQ.Length + privateKey.Exponent.Length + privateKey.InverseQ.Length + privateKey.Modulus.Length + privateKey.P.Length, privateKey.Q.Length);
-
-                HashAlgorithm hashShortcut = new SHA256CryptoServiceProvider();
-                byte[] passHS = hashShortcut.ComputeHash(Encoding.ASCII.GetBytes(textBox10.Text));
-                byte[] privateKeyHashed = new byte[privateCopy.Length];
-
-
-                //
-                BlowfishEngine algorithm = new BlowfishEngine();
-                int temp = algorithm.GetBlockSize(); //64b
-                KeyParameter parameter = new KeyParameter(passHS);
-                algorithm.Init(true, parameter);
-                BufferedBlockCipher mode = new PaddedBufferedBlockCipher(algorithm); //ecb
-                mode.Init(true, parameter);
-                byte[] privateKeyHashed2 = new byte[mode.GetOutputSize(privateCopy.Length) + 8];
-                Buffer.BlockCopy(privateCopy, 0, privateKeyHashed2, 0, privateCopy.Length);
-                byte[] byteArray = BitConverter.GetBytes(mode.GetOutputSize(privateCopy.Length) - privateCopy.Length + 1);
-                privateKeyHashed2[privateKeyHashed2.Length - 1] = byteArray[0];
-                byte[] cipheredKey = new byte[mode.GetOutputSize(privateKeyHashed2.Length)];
-                int size = mode.ProcessBytes(privateKeyHashed2, 0, privateKeyHashed2.Length, cipheredKey, 0);
-                mode.DoFinal(cipheredKey, size);
-                FileStream filePrK2 = new FileStream(PrKpath + "\\" + textBox11.Text + "2.prkey", FileMode.CreateNew, FileAccess.Write, FileShare.None);
-                filePrK2.Write(cipheredKey, 0, cipheredKey.Length);
-                filePrK2.Close();
-                //
-
-                /*
-                for (int i = 0; i < privateCopy.Length; i++)
-                {
-                    privateKeyHashed[i] = (byte)(privateCopy[i] ^ passHS[i % 32]);
-                }
-                
-                FileStream filePrK = new FileStream(PrKpath + "\\" + textBox11.Text + ".prkey", FileMode.CreateNew, FileAccess.Write, FileShare.None);
-                filePrK.Write(privateKeyHashed, 0, privateKeyHashed.Length);
-                filePrK.Close();
-                
-                //^to jest nieprawidlowa metoda^ //ktj
-                */
-                System.IO.StreamWriter filePbK = new System.IO.StreamWriter(PbKpath + "\\" + textBox11.Text + ".pbkey");
-                filePbK.WriteLine("<?xml version=\"1.0\"?>");
-                filePbK.WriteLine("<pbKey>");
-                filePbK.WriteLine("<\t<Name>" + textBox11.Text + "</Name>");
-                filePbK.WriteLine("<\t<E>" + Convert.ToBase64String(publicKey.Exponent) + "</E>");
-                filePbK.WriteLine("<\t<M>" + Convert.ToBase64String(publicKey.Modulus) + "</M>");
-                filePbK.WriteLine("</pbKey>");
-                filePbK.Close();
-                
-                textBox11.Text = "";
-                textBox10.Text = "";
-                textBox9.Text = "";
-            }
-        }
+        /*
         private bool validUserCreation()
         {
             if(textBox11.Text == "")
@@ -311,16 +241,22 @@ namespace _180101bsk
             }
             return true;
         }
+        */
         //not implemented, sprawdzenie czy wszystko wypelnione jak trzeba - do szyfrowania
         private bool validEncryption()
         {
+            if (textBox1.Text == "")
+            {
+                WriteOutput("Nie mozna otworzyc pliku.");
+                return false;
+            }
             return true;
         }
-
+        
         //wybierz plik do szyfrowania
         private void button1_Click(object sender, EventArgs e)
         {
-           if (fileManager.InputFile != null)
+            if (fileManager.InputFile != null)
                 fileManager.InputFile.Close();
             decryptUsers.Clear();
             try
@@ -332,11 +268,9 @@ namespace _180101bsk
                 WriteOutput("Nie można otworzyć pliku.");
                 return;
             }
-            
-            fileManager.TryParseFileHeader();
-            
-        }
 
+            fileManager.TryParseFileHeader();
+        }
         //przyciski do trybu
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -373,7 +307,6 @@ namespace _180101bsk
             KeyPair keys = crypto.GetKeyPair();
             byte[] encryptedPrivateKey = crypto.QuickEncrypt(Encoding.Default.GetBytes(keys.pemPrivateKey), hash);
             var user = new User(name, keys.publicKey);
-            users.Add(user);
             fileManager.SaveUser(user, encryptedPrivateKey, keys.pemPublicKey);
         }
 
@@ -437,115 +370,3 @@ namespace _180101bsk
         public List<string> Mode { get; set; }
     }
 }
-
-/*
-szyfrowanie z rok temu Twofish
-if (sprawdzenie_bledow_przy_szyfrowaniu()==true)
-            {
-                AesCryptoServiceProvider klucz = new AesCryptoServiceProvider();
-                klucz.KeySize = dlugoscKlucza;
-                klucz.GenerateKey();
-                TwofishEngine algorytm = new TwofishEngine();
-                int a = algorytm.GetBlockSize();
-                KeyParameter parametrklucza = new KeyParameter(klucz.Key);
-                algorytm.Init(true, parametrklucza);
-                BufferedBlockCipher tryb = null;
-                if (trybSzyfrowania == "ECB")
-                {
-                    tryb = new PaddedBufferedBlockCipher(algorytm);
-                }
-                else if (trybSzyfrowania == "CBC")
-                {
-                    tryb = new PaddedBufferedBlockCipher(new CbcBlockCipher(algorytm));
-                }
-                else if (trybSzyfrowania == "CFB")
-                {
-                    tryb = new PaddedBufferedBlockCipher(new CfbBlockCipher(algorytm, dlugoscPodbloku));
-                }
-                else if (trybSzyfrowania == "OFB")
-                {
-                    tryb = new PaddedBufferedBlockCipher(new OfbBlockCipher(algorytm, dlugoscPodbloku));
-                }
-
-                tryb.Init(true, parametrklucza);
-                FileStream plikOrginalny = new FileStream(sciezkaDoPlikuSzyfrowanego, FileMode.Open, FileAccess.Read);
-                long wielkosc = plikOrginalny.Length;
-                byte[] wiadomosc = new byte[wielkosc];
-                plikOrginalny.Read(wiadomosc, 0, Convert.ToInt32(wielkosc));
-                plikOrginalny.Close();
-
-                System.IO.StreamWriter plikszyfrowany = new System.IO.StreamWriter(sciezkaDoZapisuPlikuSzyfrowanego + "\\" + nazwaPlikuSzyfrowanego );
-                byte[] wiadomoscPelna = new byte[tryb.GetOutputSize(wiadomosc.Length) + 8];
-                Buffer.BlockCopy(wiadomosc, 0, wiadomoscPelna, 0, wiadomosc.Length);
-
-                byte[] byteArray = BitConverter.GetBytes(tryb.GetOutputSize(wiadomosc.Length) - wielkosc + 1);
-                wiadomoscPelna[wiadomoscPelna.Length - 1] = byteArray[0];
-
-
-                byte[] zaszyfrowaneDane = new byte[tryb.GetOutputSize(wiadomoscPelna.Length)];
-
-                int rozmiar = tryb.ProcessBytes(wiadomoscPelna, 0, wiadomoscPelna.Length, zaszyfrowaneDane, 0);
-                tryb.DoFinal(zaszyfrowaneDane, rozmiar);
-                string shortVI = Convert.ToBase64String(klucz.IV, 0, 16);
-
-                plikszyfrowany.WriteLine("<?xml version=\"1.0\"?>");
-                plikszyfrowany.WriteLine("<EncryptedFile>");
-                plikszyfrowany.WriteLine("\t<NameAlgorithm>Twofish</NameAlgorithm>");
-                plikszyfrowany.WriteLine("\t<CipherMode>" + trybSzyfrowania + "</CipherMode>");
-                if (trybSzyfrowania == "CFB" || trybSzyfrowania == "OFB")
-                    plikszyfrowany.WriteLine("\t<SegmentSize>" + dlugoscPodbloku + "</SegmentSize>");
-                plikszyfrowany.WriteLine("\t<KeySize>" + dlugoscKlucza + "</KeySize>");
-                plikszyfrowany.WriteLine("\t<IV>" + shortVI + "</IV>");
-                plikszyfrowany.WriteLine("\t<ApprovedUsers>");
-
-                foreach (Uzytkownicy user in users)
-                {
-                    plikszyfrowany.WriteLine("\t\t<User>");
-                    RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048);
-                    RSAParameters publicznyKlucz = RSA.ExportParameters(false);
-                    publicznyKlucz.Exponent = Convert.FromBase64String(user.E);
-                    publicznyKlucz.Modulus = Convert.FromBase64String(user.modul);
-                    RSA = new RSACryptoServiceProvider();
-                    RSA.ImportParameters(publicznyKlucz);
-                    byte[] szyfrowanyKlucz = RSA.Encrypt(klucz.Key, false);
-                    string skonwertowanySzyfrowanyKlucz = Convert.ToBase64String(szyfrowanyKlucz);
-                    plikszyfrowany.WriteLine("\t\t\t<Nick>" + user.nick + "</Nick>");
-                    plikszyfrowany.WriteLine("\t\t\t<SessionKey>" + skonwertowanySzyfrowanyKlucz + "</SessionKey>");
-                    plikszyfrowany.WriteLine("\t\t</User>");
-                }
-                foreach (Uzytkownicy user in userImport)
-                {
-                    plikszyfrowany.WriteLine("\t\t<UserImport>");
-                    RSACryptoServiceProvider RSA = new RSACryptoServiceProvider(2048);
-                    RSAParameters publicznyKlucz = RSA.ExportParameters(false);
-                    publicznyKlucz.Exponent = Convert.FromBase64String(user.E);
-                    publicznyKlucz.Modulus = Convert.FromBase64String(user.modul);
-                    RSA = new RSACryptoServiceProvider();
-                    RSA.ImportParameters(publicznyKlucz);
-                    byte[] szyfrowanyKlucz = RSA.Encrypt(klucz.Key, false);
-                    string skonwertowanySzyfrowanyKlucz = Convert.ToBase64String(szyfrowanyKlucz);
-                    plikszyfrowany.WriteLine("\t\t\t<Nick>" + user.nick + "</Nick>");
-                    plikszyfrowany.WriteLine("\t\t\t<SessionKey>" + skonwertowanySzyfrowanyKlucz + "</SessionKey>");
-                    plikszyfrowany.WriteLine("\t\t</UserImport>");
-                }
-                plikszyfrowany.WriteLine("\t</ApprovedUsers>");
-                plikszyfrowany.WriteLine("</EncryptedFile>");
-                plikszyfrowany.Close();
-                FileStream szyfrowanyStrumien = new FileStream(sciezkaDoZapisuPlikuSzyfrowanego + "\\" + nazwaPlikuSzyfrowanego , FileMode.Append, FileAccess.Write, FileShare.None);
-                szyfrowanyStrumien.Write(zaszyfrowaneDane, 0, zaszyfrowaneDane.Length);
-                szyfrowanyStrumien.Close();
-                wynikiOperacji.Text="Udało się pomyślnie zaszyfrować plik";
-                if (messageBoxy.Checked)
-                {
-                    MessageBox.Show("Udało się pomyślnie zaszyfrować plik");
-                }
-                textBox_plik_wej_szyfrowanie.Text = "";
-                textBox_plik_wyj_szyfrowanie.Text = "";
-                textBox2.Text = "";
-                wynikiBledow.Text = "";
-                Odbiorcy.Items.Clear();
-                users.Clear();
-                userImport.Clear();
-            }
-
-*/

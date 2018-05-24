@@ -103,7 +103,20 @@ namespace _180101bsk
             fileStream = new FileStream("private/" + user.Name + ".ppk", FileMode.Create);
             fileStream.Write(encryptedPrivateKey, 0, encryptedPrivateKey.Length);
             fileStream.Close();
-        }
+
+            var dir = new DirectoryInfo("public");
+            foreach (FileInfo userz in dir.GetFiles())
+            {
+                string name = Path.GetFileNameWithoutExtension(userz.FullName);
+                if (name == user.Name)
+                {
+                    var streamReader = new StreamReader(userz.OpenRead());
+                    byte[] publicKey = Encoding.Default.GetBytes(streamReader.ReadToEnd());
+                    streamReader.Close();
+                    window.users.Add(new User(name, publicKey));
+                }
+            }
+        }//ktjktj
         public void TryParseFileHeader()
         {
             if (InputFile == null)
