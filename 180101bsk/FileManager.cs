@@ -248,9 +248,7 @@ namespace _180101bsk
         }
         public void CloseFiles()
         {
-            InputFile.Close();
             OutputFile.Close();
-            InputFile = null;
             OutputFile = null;
         }
 

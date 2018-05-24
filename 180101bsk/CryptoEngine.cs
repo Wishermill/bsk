@@ -167,42 +167,42 @@ namespace _180101bsk
         {
             var cipher = new PaddedBufferedBlockCipher(new CbcBlockCipher(engine));
             cipher.Init(mode, new KeyParameter(sessionKey));
-            Process(cipher);
+            Process(cipher, mode);
         }
         public void CFBProcess(bool mode)
         {
             var cipher = new PaddedBufferedBlockCipher(new CfbBlockCipher(engine, subBlockLength*8));
             cipher.Init(mode, new KeyParameter(sessionKey));
-            Process(cipher);
+            Process(cipher, mode);
         }
         public void OFBProcess(bool mode)
         {
             var cipher = new PaddedBufferedBlockCipher(new OfbBlockCipher(engine, subBlockLength*8));
             cipher.Init(mode, new KeyParameter(sessionKey));
-            Process(cipher);
+            Process(cipher, mode);
         }
 
         public void ECBProcess(bool mode)
         {
             var cipher = new PaddedBufferedBlockCipher(engine);
             cipher.Init(mode, new KeyParameter(sessionKey));
-            Process(cipher);
+            Process(cipher, mode);
         }
-        private void Process(PaddedBufferedBlockCipher cipher)
+        private void Process(PaddedBufferedBlockCipher cipher, bool isEncrypt)
         {
             int progress = 0;
             byte[] inputBytes;
             while ((inputBytes = fileManager.Read(blockLength)).Length == blockLength)
             {
                 progress++;
-                fileManager.Write(cipher.ProcessBytes(inputBytes));
-                window.UpdateProgress((progress * blockLength) / (int)fileManager.inputFileLength);
+                fileManager.Write(cipher.ProcessBytes(inputBytes)); 
+                window.UpdateProgress(isEncrypt, (progress * blockLength) / (int)fileManager.inputFileLength);
             }
             if (inputBytes.Length > 0)
                 fileManager.Write(cipher.DoFinal(inputBytes));
             else
                 fileManager.Write(cipher.DoFinal());
-            window.UpdateProgress(100);
+            window.UpdateProgress(isEncrypt, 100);
 
         }
         public void GenerateKeys()

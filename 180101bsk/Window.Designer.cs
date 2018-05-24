@@ -33,9 +33,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.keyLengthComboBox = new System.Windows.Forms.ComboBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.Zaszyfruj = new System.Windows.Forms.Button();
             this.listaOdbiorcow = new System.Windows.Forms.ListBox();
@@ -73,10 +70,10 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(-3, 0);
+            this.tabControl1.Location = new System.Drawing.Point(-3, 32);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(417, 363);
+            this.tabControl1.Size = new System.Drawing.Size(417, 383);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -85,7 +82,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(409, 337);
+            this.tabPage1.Size = new System.Drawing.Size(409, 357);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Szyfrowanie";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -94,9 +91,6 @@
             // 
             this.groupBox2.Controls.Add(this.keyLengthComboBox);
             this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Controls.Add(this.button1);
-            this.groupBox2.Controls.Add(this.textBox1);
-            this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.progressBar1);
             this.groupBox2.Controls.Add(this.Zaszyfruj);
             this.groupBox2.Controls.Add(this.listaOdbiorcow);
@@ -107,7 +101,7 @@
             this.groupBox2.Controls.Add(this.groupBox3);
             this.groupBox2.Location = new System.Drawing.Point(6, 6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(400, 426);
+            this.groupBox2.Size = new System.Drawing.Size(400, 351);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Ustawienia";
@@ -115,7 +109,7 @@
             // keyLengthComboBox
             // 
             this.keyLengthComboBox.FormattingEnabled = true;
-            this.keyLengthComboBox.Location = new System.Drawing.Point(282, 64);
+            this.keyLengthComboBox.Location = new System.Drawing.Point(282, 38);
             this.keyLengthComboBox.Name = "keyLengthComboBox";
             this.keyLengthComboBox.Size = new System.Drawing.Size(86, 21);
             this.keyLengthComboBox.TabIndex = 17;
@@ -130,33 +124,6 @@
             this.button2.Text = "Zarządzaj odbiorcami";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(311, 19);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Wybierz plik";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Enabled = false;
-            this.textBox1.Location = new System.Drawing.Point(87, 19);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 20);
-            this.textBox1.TabIndex = 12;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(75, 13);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Plik wejsciowy";
             // 
             // progressBar1
             // 
@@ -203,7 +170,7 @@
             "16",
             "32",
             "64"});
-            this.subBlockLengthComboBox.Location = new System.Drawing.Point(155, 64);
+            this.subBlockLengthComboBox.Location = new System.Drawing.Point(155, 37);
             this.subBlockLengthComboBox.Name = "subBlockLengthComboBox";
             this.subBlockLengthComboBox.Size = new System.Drawing.Size(90, 21);
             this.subBlockLengthComboBox.TabIndex = 5;
@@ -212,7 +179,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(279, 45);
+            this.label5.Location = new System.Drawing.Point(279, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(80, 13);
             this.label5.TabIndex = 2;
@@ -221,7 +188,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(152, 45);
+            this.label4.Location = new System.Drawing.Point(152, 19);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(93, 13);
             this.label4.TabIndex = 1;
@@ -233,9 +200,9 @@
             this.groupBox3.Controls.Add(this.radioButton3);
             this.groupBox3.Controls.Add(this.radioButton2);
             this.groupBox3.Controls.Add(this.radioButton1);
-            this.groupBox3.Location = new System.Drawing.Point(8, 45);
+            this.groupBox3.Location = new System.Drawing.Point(8, 19);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(128, 111);
+            this.groupBox3.Size = new System.Drawing.Size(128, 137);
             this.groupBox3.TabIndex = 0;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Tryb szyfrowania";
@@ -295,32 +262,29 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(409, 337);
+            this.tabPage2.Size = new System.Drawing.Size(409, 357);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Deszyfrowanie";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // groupBox5
             // 
-            this.groupBox5.Controls.Add(this.button4);
-            this.groupBox5.Controls.Add(this.textBox7);
-            this.groupBox5.Controls.Add(this.label7);
             this.groupBox5.Controls.Add(this.progressBar2);
             this.groupBox5.Controls.Add(this.textBox8);
             this.groupBox5.Controls.Add(this.label11);
             this.groupBox5.Controls.Add(this.button5);
             this.groupBox5.Controls.Add(this.Lista);
             this.groupBox5.Controls.Add(this.label10);
-            this.groupBox5.Location = new System.Drawing.Point(3, 6);
+            this.groupBox5.Location = new System.Drawing.Point(3, 0);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(400, 423);
+            this.groupBox5.Size = new System.Drawing.Size(400, 354);
             this.groupBox5.TabIndex = 2;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Ustawienia";
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(314, 16);
+            this.button4.Location = new System.Drawing.Point(323, 4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 18;
@@ -330,7 +294,8 @@
             // 
             // textBox7
             // 
-            this.textBox7.Location = new System.Drawing.Point(90, 16);
+            this.textBox7.Enabled = false;
+            this.textBox7.Location = new System.Drawing.Point(85, 6);
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(218, 20);
             this.textBox7.TabIndex = 17;
@@ -338,7 +303,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(8, 16);
+            this.label7.Location = new System.Drawing.Point(4, 9);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 13);
             this.label7.TabIndex = 16;
@@ -346,7 +311,7 @@
             // 
             // progressBar2
             // 
-            this.progressBar2.Location = new System.Drawing.Point(11, 235);
+            this.progressBar2.Location = new System.Drawing.Point(11, 262);
             this.progressBar2.Name = "progressBar2";
             this.progressBar2.Size = new System.Drawing.Size(375, 23);
             this.progressBar2.TabIndex = 12;
@@ -354,16 +319,16 @@
             // 
             // textBox8
             // 
-            this.textBox8.Location = new System.Drawing.Point(48, 166);
+            this.textBox8.Location = new System.Drawing.Point(48, 236);
             this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(289, 20);
+            this.textBox8.Size = new System.Drawing.Size(338, 20);
             this.textBox8.TabIndex = 11;
             this.textBox8.UseSystemPasswordChar = true;
             // 
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(8, 169);
+            this.label11.Location = new System.Drawing.Point(8, 239);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(34, 13);
             this.label11.TabIndex = 10;
@@ -371,9 +336,9 @@
             // 
             // button5
             // 
-            this.button5.Location = new System.Drawing.Point(8, 264);
+            this.button5.Location = new System.Drawing.Point(11, 291);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(378, 57);
+            this.button5.Size = new System.Drawing.Size(375, 57);
             this.button5.TabIndex = 9;
             this.button5.Text = "Deszyfruj";
             this.button5.UseVisualStyleBackColor = true;
@@ -382,15 +347,15 @@
             // Lista
             // 
             this.Lista.FormattingEnabled = true;
-            this.Lista.Location = new System.Drawing.Point(11, 62);
+            this.Lista.Location = new System.Drawing.Point(11, 32);
             this.Lista.Name = "Lista";
-            this.Lista.Size = new System.Drawing.Size(326, 95);
+            this.Lista.Size = new System.Drawing.Size(375, 199);
             this.Lista.TabIndex = 8;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(8, 39);
+            this.label10.Location = new System.Drawing.Point(8, 16);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(139, 13);
             this.label10.TabIndex = 7;
@@ -400,17 +365,17 @@
             // 
             this.outputTextBox.BackColor = System.Drawing.SystemColors.Window;
             this.outputTextBox.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.outputTextBox.Location = new System.Drawing.Point(7, 382);
+            this.outputTextBox.Location = new System.Drawing.Point(10, 434);
             this.outputTextBox.Multiline = true;
             this.outputTextBox.Name = "outputTextBox";
             this.outputTextBox.ReadOnly = true;
-            this.outputTextBox.Size = new System.Drawing.Size(391, 58);
+            this.outputTextBox.Size = new System.Drawing.Size(391, 110);
             this.outputTextBox.TabIndex = 16;
             // 
             // outputLabel
             // 
             this.outputLabel.AutoSize = true;
-            this.outputLabel.Location = new System.Drawing.Point(4, 366);
+            this.outputLabel.Location = new System.Drawing.Point(12, 418);
             this.outputLabel.Name = "outputLabel";
             this.outputLabel.Size = new System.Drawing.Size(47, 13);
             this.outputLabel.TabIndex = 15;
@@ -420,9 +385,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(410, 457);
+            this.ClientSize = new System.Drawing.Size(413, 556);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.textBox7);
             this.Controls.Add(this.outputLabel);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.outputTextBox);
             this.Name = "Window";
             this.Text = "grupa 11 149481 149385";
@@ -465,9 +433,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.ProgressBar progressBar2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.Label label7;

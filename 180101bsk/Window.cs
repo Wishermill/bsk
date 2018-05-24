@@ -57,9 +57,16 @@ namespace _180101bsk
             outputTextBox.AppendText(text + "\n");
         }
 
-        public void UpdateProgress(int progress)
+        public void UpdateProgress(bool isEncrypt,int progress)
         {
-            progressBar1.Value = progress;
+            if (isEncrypt)
+            {
+                progressBar1.Value = progress;
+            }
+            else
+            {
+                progressBar2.Value = progress;
+            }
         }
 
         private void InitComboBoxesValues()
@@ -94,7 +101,8 @@ namespace _180101bsk
 
             crypto.cipherMode = cipherMode;
             crypto.StartEncryption();
-            textBox1.Text = "";
+            textBox7.Text = "";
+           // WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
         }
 
         //Dekryptowanie 
@@ -154,7 +162,7 @@ namespace _180101bsk
             decryptUsers.Clear();
             try
             {
-                textBox1.Text = fileManager.SetInputFile();
+                textBox7.Text = fileManager.SetInputFile();
             }
             catch (Exception ex)
             {
@@ -163,6 +171,8 @@ namespace _180101bsk
             }
 
             fileManager.TryParseFileHeader();
+            //UpdateProgress(true, 0);
+           // UpdateProgress(false, 0);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -214,8 +224,6 @@ namespace _180101bsk
                 receivers.Clear();
             }
             decryptUsers.Clear();
-            progressBar1.Value = 0;
-            progressBar2.Value = 0;
         }
     }
 
