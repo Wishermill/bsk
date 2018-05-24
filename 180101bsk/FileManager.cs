@@ -117,12 +117,13 @@ namespace _180101bsk
                     window.users.Add(new User(name, publicKey));
                 }
             }
-        }//ktjktj
+        }
+
         public void TryParseFileHeader()
         {
             if (InputFile == null)
                 window.decryptUsers.Clear();
-            if (InputFile != null && InputFile.BaseStream.Position == 0)
+            if (InputFile.BaseStream != null && InputFile.BaseStream.Position == 0)
             {
                 var fileStream = InputFile.BaseStream;
 
@@ -140,6 +141,7 @@ namespace _180101bsk
 
             }
         }
+
         public void ParseFileHeader()
         {
             var header = GetHeader();
@@ -249,8 +251,10 @@ namespace _180101bsk
         }
         public void OpenOutputFile()
         {
-            OutputFile = new BinaryWriter(new FileStream(outputFilePath, FileMode.Create));
-
+            if (outputFilePath != "")
+            {
+                OutputFile = new BinaryWriter(new FileStream(outputFilePath, FileMode.Create));
+            }
         }
         public void CloseFiles()
         {

@@ -100,9 +100,34 @@ namespace _180101bsk
             }
 
             crypto.cipherMode = cipherMode;
-            crypto.StartEncryption();
-            textBox7.Text = "";
-            WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
+            if (fileManager.InputFile == null)
+            {
+                WriteOutput("Brak pliku wejściowego.");
+                return;
+            }
+            if (fileManager.outputFilePath == "")
+            {
+                WriteOutput("Nie ustalono pliku wyjściowego.");
+                return;
+            }
+            if (fileManager.InputFile.BaseStream.Position == 0)
+            {
+                WriteOutput("Niepoprawny plik.");
+                return;
+            }
+            try
+            {
+                crypto.StartEncryption();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                textBox7.Text = "";
+                WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
+            }
         }
 
         //Dekryptowanie 
