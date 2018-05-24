@@ -38,6 +38,7 @@ namespace _180101bsk
         private Window window;
         public string outputFilePath = "";
         public string extensionName = "";
+        public string inputFilename = "";
         public FileManager(Window window)
         {
             this.window = window;
@@ -225,6 +226,7 @@ namespace _180101bsk
                     inputFileLength = fileStream.Length;
                     FileStream streamTemp = fileStream as FileStream;
                     extensionName = Path.GetExtension(streamTemp.Name);
+                    inputFilename = Path.GetFileName(streamTemp.Name);
                     InputFile = new BinaryReader(fileStream);
                     return fileDialog.FileName;
                 }

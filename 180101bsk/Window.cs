@@ -121,7 +121,7 @@ namespace _180101bsk
             finally
             {
                 textBox7.Text = "";
-                WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
+                WriteOutput("Zaszyfrowano poprawnie plik: " + fileManager.inputFilename);
             }
         }
 
