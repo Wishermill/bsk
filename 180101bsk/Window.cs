@@ -102,7 +102,7 @@ namespace _180101bsk
             crypto.cipherMode = cipherMode;
             crypto.StartEncryption();
             textBox7.Text = "";
-           // WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
+            WriteOutput("Zaszyfrowano poprawnie plik" + fileManager.InputFile.ToString());
         }
 
         //Dekryptowanie 
@@ -154,7 +154,7 @@ namespace _180101bsk
             //mozna usunac, ale to trzeba w 2-3 miejscach - to na koniec zrobie
         }
 
-        //wybierz plik do szyfrowania
+        //wybierz plik do szyfrowania i deszyfrowania 
         private void button1_Click(object sender, EventArgs e)
         {
             if (fileManager.InputFile != null)
@@ -171,8 +171,6 @@ namespace _180101bsk
             }
 
             fileManager.TryParseFileHeader();
-            //UpdateProgress(true, 0);
-           // UpdateProgress(false, 0);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
@@ -224,6 +222,18 @@ namespace _180101bsk
                 receivers.Clear();
             }
             decryptUsers.Clear();
+        }
+
+        private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 0)
+            {
+                UpdateProgress(true, 0);
+            }
+            else
+            {
+                UpdateProgress(false, 0);
+            }
         }
     }
 
