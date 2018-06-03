@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -15,13 +16,6 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
-/*
-  do zapytania - czy uzytkownik ma wybierac dlugosc podbloku dla OFB i CFB
-  czy mamy sami ja narzucic?
-  przy okazji jeszcze raz zapytam o wielkosc klucza
-  //ktj
- */
 
 namespace _180101bsk
 {
@@ -91,10 +85,13 @@ namespace _180101bsk
 
         private void Zaszyfruj_Click(object sender, EventArgs e)
         {
+            Stopwatch stopWatch = new Stopwatch();         
+            
             string nazwaDocelowa = "";
             SaveFileDialog okienko = new SaveFileDialog();
             if (okienko.ShowDialog() == DialogResult.OK)
             {
+                stopWatch.Start();
                 nazwaDocelowa = okienko.FileName;
                 fileManager.outputFilePath = okienko.FileName;
             }
@@ -122,16 +119,24 @@ namespace _180101bsk
             {
                 textBox7.Text = "";
                 WriteOutput("Zaszyfrowano poprawnie plik: " + fileManager.inputFilename);
+
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+                WriteOutput("RunTime " + elapsedTime);
             }
         }
 
         //Dekryptowanie 
         private void button5_Click(object sender, EventArgs e)
         {
+            Stopwatch stopWatch = new Stopwatch();
             string nazwaDocelowa = "";
             SaveFileDialog okienko = new SaveFileDialog();
             if (okienko.ShowDialog() == DialogResult.OK)
             {
+                stopWatch.Start();
                 nazwaDocelowa = okienko.FileName;
                 fileManager.outputFilePath = okienko.FileName + crypto.extensionName;
             }
@@ -164,6 +169,11 @@ namespace _180101bsk
             finally
             {
                 ClearAll();
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+                string elapsedTime = String.Format("{0:00}:{1:00}.{2:00}",
+                ts.Minutes, ts.Seconds, ts.Milliseconds);
+                WriteOutput("RunTime " + elapsedTime);
             }
             WriteOutput("Zakończono");
             textBox8.Text = "";
@@ -228,6 +238,7 @@ namespace _180101bsk
 
         private void ClearAll()
         {
+            textBox7.Text = "";
             if (receivers.Any())
             {
                 foreach (User user in receivers)

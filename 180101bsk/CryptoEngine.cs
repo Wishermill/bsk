@@ -24,8 +24,8 @@ namespace _180101bsk
         public FileManager fileManager;
         private Pkcs1Encoding RSAEncryptEngine = new Pkcs1Encoding(new RsaEngine());
         public int keyLength;
-        public int blockLength = 16;//na 8 z 16 ktj
-        public int subBlockLength = 1;
+        public int blockLength = 8; //B
+        public int subBlockLength = 1; //B
         public string extensionName = "";
 
         public string cipherMode;
@@ -53,11 +53,11 @@ namespace _180101bsk
 
             if (cipherMode == "ECB")
             {
-                subBlockLength = 1;//8?
+                subBlockLength = 1;
                 iv = null;
             }
             if (cipherMode == "CBC")
-                subBlockLength = 1;//8? ktj
+                subBlockLength = 1;
             fileManager.InsertFileHeader();
             typeof(CryptoEngine).GetMethod(cipherMode + "Process").Invoke(this, new object[] { true });
 
@@ -66,7 +66,6 @@ namespace _180101bsk
         }
         private object PEMBytesToParameters(byte[] key)
         {
-
             var textReader = new StringReader(Encoding.Default.GetString(key));
             try
             {
@@ -118,7 +117,7 @@ namespace _180101bsk
             var cipher = new PaddedBufferedBlockCipher(engine);
             cipher.Init(mode, new KeyParameter(key));
 
-            int blockLength = 16; //128 bitów //ktj 8
+            int blockLength = 8;
             byte[] output = new byte[cipher.GetOutputSize(input.Length)];
             var inputStream = new BinaryReader(new MemoryStream(input));
             var outputStream = new BinaryWriter(new MemoryStream(output));
