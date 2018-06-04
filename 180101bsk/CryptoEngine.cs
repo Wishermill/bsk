@@ -24,8 +24,8 @@ namespace _180101bsk
         public FileManager fileManager;
         private Pkcs1Encoding RSAEncryptEngine = new Pkcs1Encoding(new RsaEngine());
         public int keyLength;
-        public int blockLength = 8; //B
-        public int subBlockLength = 1; //B
+        public int blockLength = 8;
+        public int subBlockLength = 1;
         public string extensionName = "";
 
         public string cipherMode;
